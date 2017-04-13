@@ -1,0 +1,9 @@
+.Alert {
+  padding: 5vh 0;
+  background: red;
+}
+
+.Alert p {
+  color: #ffffff;
+  font-size: 5vh;
+}
