@@ -15,6 +15,9 @@ export const UPDATE_REQUEST = 'UPDATE_REQUEST';
 export const UPDATE_SUCCESS = 'UPDATE_SUCCESS';
 export const UPDATE_FAILURE = 'UPDATE_FAILURE';
 
+export const SHOW_ERROR = 'SHOW_ERROR';
+export const HIDE_ERROR = 'HIDE_ERROR';
+
 
 // Action Creators
 const loginRequest = email => ({
@@ -53,6 +56,16 @@ const updateSuccess = () => ({
 });
 const updateFailure = () => ({
   type: UPDATE_FAILURE,
+});
+
+const showError = (id, error) => ({
+  type: SHOW_ERROR,
+  id,
+  error,
+});
+const hideError = (id) => ({
+  type: HIDE_ERROR,
+  id,
 });
 
 
@@ -105,4 +118,14 @@ export const updateSetting = (setting, value) => (dispatch) => {
     .then(resp => resp.json())
     .then(json => dispatch(updateSuccess(json)))
     .catch(err => dispatch(updateFailure(err)));
+};
+
+let nextErrorId = 0;
+export const showErrorMsg = (error) => (dispatch) => {
+  const id = nextErrorId++;
+  dispatch(showError(id, error));
+
+  setTimeout(() => {
+    dispatch(hideError(id));
+  }, 5000);
 };
