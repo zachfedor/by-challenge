@@ -1,0 +1,33 @@
+.Login {
+  margin-bottom: 4rem;
+}
+
+.Login label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.Login input,
+.Login button {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  background: transparent;
+  color: #F0EEC9;
+  border: 2px solid #9EE6CF;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+
+.Login button {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.Login input:focus,
+.Login button:focus,
+.Login button:hover {
+  border-width: 5px;
+  outline: none;
+}
+

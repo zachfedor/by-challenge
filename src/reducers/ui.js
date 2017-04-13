@@ -1,7 +1,6 @@
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE,
   SHOW_ERROR,
   HIDE_ERROR,
 } from '../actions';
@@ -20,14 +19,13 @@ const ui = (state = initialState, action) => {
         loading: true,
       };
     case LOGIN_SUCCESS:
-    case LOGIN_FAILURE:
       return {
         ...state,
         loading: false,
       };
     case SHOW_ERROR:
       return {
-        ...state,
+        loading: false,
         error: action.error,
       };
     case HIDE_ERROR:

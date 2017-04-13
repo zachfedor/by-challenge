@@ -2,7 +2,7 @@ import * as actions from './index';
 
 describe('Async Action Creators', () => {
   describe('login()', () => {
-    it('should dispatch two actions', () => {
+    it('should dispatch async actions', () => {
       const dispatch = jest.fn();
       return actions.login('guy@daftpunk.com', 'discovery')(dispatch)
         .then(response => {
@@ -11,10 +11,6 @@ describe('Async Action Creators', () => {
             type: 'LOGIN_REQUEST',
             email: 'guy@daftpunk.com',
           });
-          expect(dispatch.mock.calls[1][0]).toEqual({
-            type: 'LOGIN_SUCCESS',
-            user: undefined,
-          })
         });
     });
   });

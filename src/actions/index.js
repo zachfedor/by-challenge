@@ -5,15 +5,12 @@ const apiRoot = 'http://codingchallenge.staging.brandyourself.com/';
 // Action Types
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
-export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 
 export const UPDATE_REQUEST = 'UPDATE_REQUEST';
 export const UPDATE_SUCCESS = 'UPDATE_SUCCESS';
-export const UPDATE_FAILURE = 'UPDATE_FAILURE';
 
 export const SHOW_ERROR = 'SHOW_ERROR';
 export const HIDE_ERROR = 'HIDE_ERROR';
@@ -28,10 +25,6 @@ const loginSuccess = user => ({
   type: LOGIN_SUCCESS,
   user,
 });
-const loginFailure = error => ({
-  type: LOGIN_FAILURE,
-  error,
-});
 
 const logoutRequest = (email) => ({
   type: LOGOUT_REQUEST,
@@ -41,10 +34,6 @@ const logoutSuccess = (msg) => ({
   type: LOGOUT_SUCCESS,
   msg,
 });
-const logoutFailure = (error) => ({
-  type: LOGOUT_FAILURE,
-  error,
-});
 
 const updateRequest = (setting, value) => ({
   type: UPDATE_REQUEST,
@@ -53,9 +42,6 @@ const updateRequest = (setting, value) => ({
 });
 const updateSuccess = () => ({
   type: UPDATE_SUCCESS,
-});
-const updateFailure = () => ({
-  type: UPDATE_FAILURE,
 });
 
 const showError = (id, error) => ({
@@ -70,6 +56,18 @@ const hideError = (id) => ({
 
 
 // Async Action Creators
+let nextErrorId = 0;
+export const showErrorMsg = (error) => (dispatch) => {
+  const id = nextErrorId++;
+
+  dispatch(showError(id, error));
+
+  setTimeout(() => {
+    dispatch(hideError(id));
+  }, 10000);
+};
+
+
 export const login = (email, password) => (dispatch) => {
   const formData = new FormData();
   formData.append('email', email);
@@ -85,8 +83,13 @@ export const login = (email, password) => (dispatch) => {
 
   return fetch(apiRoot + 'login', postData)
     .then(resp => resp.json())
-    .then(json => dispatch(loginSuccess(json.user)))
-    .catch(err => dispatch(loginFailure(err)));
+    .then(json => {
+      if (json.error) {
+        dispatch(showErrorMsg(json.error));
+      } else {
+        dispatch(loginSuccess(json.user));
+      }
+    });
 };
 
 export const logout = (email) => (dispatch) => {
@@ -99,8 +102,13 @@ export const logout = (email) => (dispatch) => {
 
   return fetch(apiRoot + 'logout', postData)
     .then(resp => resp.json())
-    .then(json => dispatch(logoutSuccess(json)))
-    .catch(err => dispatch(logoutFailure(err)));
+    .then(json => {
+      if (json.error) {
+        dispatch(showErrorMsg(json.error));
+      } else {
+        dispatch(logoutSuccess(json));
+      }
+    });
 };
 
 export const updateSetting = (setting, value) => (dispatch) => {
@@ -116,16 +124,11 @@ export const updateSetting = (setting, value) => (dispatch) => {
 
   return fetch(apiRoot + 'setting', postData)
     .then(resp => resp.json())
-    .then(json => dispatch(updateSuccess(json)))
-    .catch(err => dispatch(updateFailure(err)));
-};
-
-let nextErrorId = 0;
-export const showErrorMsg = (error) => (dispatch) => {
-  const id = nextErrorId++;
-  dispatch(showError(id, error));
-
-  setTimeout(() => {
-    dispatch(hideError(id));
-  }, 5000);
+    .then(json => {
+      if (json.error) {
+        dispatch(showErrorMsg(json.error));
+      } else {
+        dispatch(updateSuccess(json));
+      }
+    });
 };

@@ -4,12 +4,14 @@ import {
 } from '../actions';
 
 
-const user = (state = {}, action) => {
+const user = (state = null, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      return action.user;
+      return {
+        ...action.user
+      };
     case LOGOUT_SUCCESS:
-      return {};
+      return null;
     default:
       return state;
   }

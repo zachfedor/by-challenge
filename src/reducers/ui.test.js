@@ -2,7 +2,6 @@ import ui from './ui';
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE,
   SHOW_ERROR,
   HIDE_ERROR,
 } from '../actions';
@@ -36,10 +35,8 @@ describe('UI Reducer', () => {
 
   it('should update loading state on login response', () => {
     const firstAction = { type: LOGIN_SUCCESS };
-    expect(ui(loadingState, firstAction)).toEqual(initialState);
 
-    const secondAction = { type: LOGIN_FAILURE };
-    expect(ui(loadingState, secondAction)).toEqual(initialState);
+    expect(ui(loadingState, firstAction)).toEqual(initialState);
   });
 
   it('should show an error message', () => {

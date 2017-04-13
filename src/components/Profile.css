@@ -1,3 +1,7 @@
 .Profile {
   text-align: left;
 }
+
+.Profile-email a {
+  color: #9EE6CF;
+}

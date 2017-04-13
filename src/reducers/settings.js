@@ -8,7 +8,11 @@ import {
 const settings = (state = {}, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      return action.user.settings;
+      let settings = {};
+      if (action.user && action.user.settings) {
+        settings = action.user.settings;
+      }
+      return settings;
     case LOGOUT_SUCCESS:
       return {};
     case UPDATE_SUCCESS:

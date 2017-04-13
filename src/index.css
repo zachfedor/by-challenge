@@ -2,8 +2,16 @@
   box-sizing: border-box;
 }
 
+html {
+  background: linear-gradient(to bottom right, #50C9BA, #4BA2AC);
+  color: #F0EEC9;
+  font-size: 20px;
+  min-height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  text-align: center;
 }

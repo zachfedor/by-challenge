@@ -4,7 +4,7 @@ import './Profile.css';
 
 const Profile = ({ user }) => (
   <article className="Profile">
-    <h1 className="Profile-name">{user.name}</h1>
+    <h2 className="Profile-name">{user.name}</h2>
 
     <p className="Profile-email">
       <a href={`mailto:${user.email}`}>{user.email}</a>

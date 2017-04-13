@@ -7,7 +7,7 @@ import {
 describe('User Reducer', () => {
   it('should return initial state', () => {
     const action = { type: 'fake action' };
-    expect(user(undefined, action)).toEqual({});
+    expect(user(undefined, action)).toBe(null);
   });
 
   it('should return user object on login', () => {
@@ -23,6 +23,6 @@ describe('User Reducer', () => {
       type: LOGOUT_SUCCESS
     };
 
-    expect(user({ name: 'bob' }, action)).toEqual({});
+    expect(user({ name: 'bob' }, action)).toEqual(null);
   });
 });

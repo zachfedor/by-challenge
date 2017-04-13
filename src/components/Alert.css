@@ -1,10 +1,20 @@
 .Alert {
-  padding: 5vh 0;
-  background: red;
+  /* position: absolute; */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 5vh 5vw;
+  background: #F0EEC9;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.Alert.active {
+  opacity: 1;
 }
 
 .Alert p {
   margin: 0;
-  color: #ffffff;
+  color: #4BA2AC;
   font-size: 5vh;
 }

@@ -3,7 +3,7 @@
   display: block;
   margin-bottom: 1rem;
   padding: 1rem 1rem 1rem 5rem;
-  font-size: 5vmin;
+  font-size: 24px;
   cursor: pointer;
 }
 
@@ -30,7 +30,7 @@
 
 .CheckBox:before {
   content: '';
-  border: 2px solid #333;
+  border: 2px solid #F0EEC9;
 }
 
 .CheckBox.checked:after {
@@ -38,5 +38,5 @@
   border: 2px solid transparent;
   text-align: center;
   line-height: 28px;
-  color: #333;
+  color: #9EE6CF;
 }
