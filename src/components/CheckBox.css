@@ -1,0 +1,37 @@
+.CheckBox {
+  position: relative;
+  display: block;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.CheckBox input,
+.CheckBox:before,
+.CheckBox.checked:after {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  width: 26px;
+  height: 26px;
+  margin-top: -13px;
+  cursor: pointer;
+}
+
+.CheckBox input {
+  display: inline;
+  vertical-align: middle;
+  opacity: 0;
+  z-index: 100;
+}
+
+.CheckBox:before {
+  content: '';
+  border: 2px solid #333;
+}
+
+.CheckBox.checked:after {
+  content: '\2713';
+  text-align: center;
+  line-height: 28px;
+  color: #333;
+}
