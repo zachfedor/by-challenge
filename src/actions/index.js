@@ -40,8 +40,10 @@ const updateRequest = (setting, value) => ({
   setting,
   value,
 });
-const updateSuccess = () => ({
+const updateSuccess = (setting, value) => ({
   type: UPDATE_SUCCESS,
+  setting,
+  value,
 });
 
 const showError = (id, error) => ({
@@ -122,13 +124,16 @@ export const updateSetting = (setting, value) => (dispatch) => {
 
   dispatch(updateRequest(setting, value));
 
-  return fetch(apiRoot + 'setting', postData)
+  return fetch(apiRoot + 'settings', postData)
     .then(resp => resp.json())
     .then(json => {
       if (json.error) {
-        dispatch(showErrorMsg(json.error));
+        console.warn(json.error);
+
+        const msg = 'Sorry, an error occured. Try it again.';
+        dispatch(showErrorMsg(msg));
       } else {
-        dispatch(updateSuccess(json));
+        dispatch(updateSuccess(setting, value));
       }
     });
 };

@@ -16,7 +16,9 @@ class CheckBox extends Component {
   handleChange(e) {
     // TODO: dispatch update action instead of changing local state?
     this.setState({ checked: e.target.checked });
-    this.props.onChange(e.target.checked);
+
+    const value = e.target.checked ? 1 : 0;
+    this.props.onChange(this.props.label, value);
   }
 
   render() {
