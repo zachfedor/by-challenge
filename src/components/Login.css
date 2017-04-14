@@ -1,5 +1,8 @@
 .Login {
-  margin-bottom: 4rem;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 4rem;
+  text-align: left;
 }
 
 .Login label {
@@ -16,18 +19,20 @@
   color: #F0EEC9;
   border: 2px solid #9EE6CF;
   font-size: 1rem;
-  transition: border 0.3s;
+  transition: background 0.3s, color 0.3s;
 }
 
 .Login button {
   width: 50%;
   margin: 0 auto;
+  cursor: pointer;
 }
 
 .Login input:focus,
 .Login button:focus,
 .Login button:hover {
-  border-width: 5px;
   outline: none;
+  background: #9EE6CF;
+  color: #4BA2AC;
 }
 
